@@ -178,19 +178,29 @@ function App() {
         padding: 4,
       }}
     >
-      <AppBar position="static" sx={{ backgroundColor: '#004d40' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#bc560a' }}>
         <Toolbar sx={{ justifyContent: 'center', position: 'relative' }}>
           <Typography variant="h6" sx={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            ADAX DeFi Liquidity Pool
+            Fiesta DeFi Liquidity Pool
           </Typography>
         </Toolbar>
-      </AppBar>
-      <Grid container spacing={4} sx={{ mt: 4 }}>
+      </AppBar> 
+      <Grid 
+  container 
+  spacing={6} 
+  sx={{ 
+    mt: 4, 
+    mb: 4, 
+    display: 'flex', 
+    flexDirection: 'row', 
+    justifyContent: 'space-between' 
+  }}
+>
         <Grid item xs={12} md={4}>
           <Card>
             <CardContent>
               <Typography variant="h6" sx={{ mb: 2 }}>
-                Generate Keypair
+                Generate Keypair here
               </Typography>
               <Button
                 variant="contained"
@@ -198,15 +208,15 @@ function App() {
                 fullWidth
                 disabled={loading.generateKeypair}
                 sx={{
-                  backgroundColor: '#00796b',
-                  '&:hover': { backgroundColor: '#004d40' },
+                  backgroundColor: '#A633FF',
+                  '&:hover': { backgroundColor: '#3333FF' },
                   borderRadius: '8px',
                 }}
               >
                 {loading.generateKeypair ? <CircularProgress size={24} /> : 'Generate Keypair'}
               </Button>
               <Typography variant="h6" sx={{ mt: 4 }}>
-                Fund Account
+                please fund account here
               </Typography>
               <Button
                 variant="contained"
@@ -214,8 +224,8 @@ function App() {
                 fullWidth
                 disabled={loading.fundAccount}
                 sx={{
-                  backgroundColor: '#d32f2f',
-                  '&:hover': { backgroundColor: '#b71c1c' },
+                  backgroundColor: '#33FF96',
+                  '&:hover': { backgroundColor: '#33FFC7' },
                   borderRadius: '8px',
                 }}
               >
@@ -224,6 +234,35 @@ function App() {
             </CardContent>
           </Card>
         </Grid>
+        <Grid item xs={12} md={4}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Withdraw from the  Pool
+              </Typography>
+              <TextField
+                label="Withdrawal Amount"
+                fullWidth
+                sx={{ mb: 2 }}
+                onChange={(e) => setWithdrawAmount(e.target.value)}
+              />
+              <Button
+                variant="contained"
+                onClick={withdrawFromPool}
+                fullWidth
+                disabled={loading.withdrawFromPool}
+                sx={{
+                  backgroundColor: '#33FF33',
+                  '&:hover': { backgroundColor: '#FF5733' },
+                  borderRadius: '8px',
+                }}
+              >
+                {loading.withdrawFromPool ? <CircularProgress size={24} /> : 'Withdraw from Pool'}
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
         <Grid item xs={12} md={4}>
           <Card>
             <CardContent>
@@ -254,8 +293,8 @@ function App() {
                 fullWidth
                 disabled={loading.createLiquidityPool}
                 sx={{
-                  backgroundColor: '#388e3c',
-                  '&:hover': { backgroundColor: '#2c6c2f' },
+                  backgroundColor: '#B833FF',
+                  '&:hover': { backgroundColor: '#9633FF' },
                   borderRadius: '8px',
                 }}
               >
@@ -263,41 +302,12 @@ function App() {
               </Button>
               {liquidityPoolId && (
                 <Typography variant="body2" sx={{ mt: 2 }}>
-                  Liquidity Pool ID: {liquidityPoolId}
+                  The Liquidity Pool ID: {liquidityPoolId}
                 </Typography>
               )}
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                Withdraw from Pool
-              </Typography>
-              <TextField
-                label="Withdrawal Amount"
-                fullWidth
-                sx={{ mb: 2 }}
-                onChange={(e) => setWithdrawAmount(e.target.value)}
-              />
-              <Button
-                variant="contained"
-                onClick={withdrawFromPool}
-                fullWidth
-                disabled={loading.withdrawFromPool}
-                sx={{
-                  backgroundColor: '#0288d1',
-                  '&:hover': { backgroundColor: '#01579b' },
-                  borderRadius: '8px',
-                }}
-              >
-                {loading.withdrawFromPool ? <CircularProgress size={24} /> : 'Withdraw from Pool'}
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+        </Grid>    
       <Paper sx={{ mt: 4, p: 2, width: '100%' }}>
         <Typography variant="h6">Log</Typography>
         <Divider />
